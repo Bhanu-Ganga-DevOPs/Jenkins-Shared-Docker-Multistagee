@@ -19,7 +19,7 @@ pipeline {
         }
         stage('UNIT TEST'){
 
-#	when { expression { param.action == 'create'}}
+
             steps{
                 script{
                     mvnTest()
@@ -29,7 +29,7 @@ pipeline {
 
 	stage('Intergration Test'){
 
-#	when { expression { param.action == 'create'}}
+
             steps{
                 script{
                     mvnIntegrationTest()
@@ -38,7 +38,7 @@ pipeline {
         }
     	stage('Static Code Analysis'){
 
-#	    when { expression { param.action == 'create'}}
+
             steps{
                 script{
                     staticCodeAnalysis()
