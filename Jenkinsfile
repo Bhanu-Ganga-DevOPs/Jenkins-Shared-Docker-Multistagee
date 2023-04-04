@@ -9,7 +9,7 @@ pipeline {
     stages{
 	
         stage('Code Checkout'){
-#	when { expression { param.action == 'create'}}
+
             steps{
             gitCheckout(
                 url: "https://github.com/Bhanu-Ganga-DevOPs/Jenkins-Shared-Docker-Multistagee.git"
