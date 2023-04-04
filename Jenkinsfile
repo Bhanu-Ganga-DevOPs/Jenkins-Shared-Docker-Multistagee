@@ -7,8 +7,8 @@ pipeline {
 
             steps{
             gitCheckout(
-                credentialsId: "git_creds",
                 url: "https://github.com/Bhanu-Ganga-DevOPs/Jenkins-Shared-Docker-Multistagee.git"
+
             )
             }
         }
