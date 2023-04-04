@@ -12,5 +12,15 @@ pipeline {
             )
             }
         }
+
+        stage('unit testing'){
+            
+            step{
+                script{
+                    mvnTest()
+                }
+            }
+
+        }
     }
 }
