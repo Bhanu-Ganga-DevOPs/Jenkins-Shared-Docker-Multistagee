@@ -3,7 +3,6 @@
 pipeline {
     agent any
 
-}
 
 
     stages{
@@ -28,8 +27,6 @@ pipeline {
         }
 
 	stage('Intergration Test'){
-
-
             steps{
                 script{
                     mvnIntegrationTest()
@@ -37,8 +34,6 @@ pipeline {
             }
         }
     	stage('Static Code Analysis'){
-
-
             steps{
                 script{
                     staticCodeAnalysis()
