@@ -3,15 +3,13 @@
 pipeline {
     agent any
 
-    parameters{
-        choice(name: 'action', choices: 'create\ndelete', description:'Choose create/destroy')
-    }
+}
 
 
     stages{
 	
         stage('Code Checkout'){
-	when { expression { param.action == 'create'}}
+#	when { expression { param.action == 'create'}}
             steps{
             gitCheckout(
                 url: "https://github.com/Bhanu-Ganga-DevOPs/Jenkins-Shared-Docker-Multistagee.git"
@@ -21,7 +19,7 @@ pipeline {
         }
         stage('UNIT TEST'){
 
-	when { expression { param.action == 'create'}}
+#	when { expression { param.action == 'create'}}
             steps{
                 script{
                     mvnTest()
@@ -31,7 +29,7 @@ pipeline {
 
 	stage('Intergration Test'){
 
-	when { expression { param.action == 'create'}}
+#	when { expression { param.action == 'create'}}
             steps{
                 script{
                     mvnIntegrationTest()
@@ -40,7 +38,7 @@ pipeline {
         }
     	stage('Static Code Analysis'){
 
-	    when { expression { param.action == 'create'}}
+#	    when { expression { param.action == 'create'}}
             steps{
                 script{
                     staticCodeAnalysis()
