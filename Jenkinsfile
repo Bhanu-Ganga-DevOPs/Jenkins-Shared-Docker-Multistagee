@@ -20,6 +20,15 @@ pipeline {
                 }
             }
         }
+
+	stage('Intergration Test'){
+
+            steps{
+                script{
+                    mvnIntegrationTest()
+                }
+            }
+        }
         
     }
 }
