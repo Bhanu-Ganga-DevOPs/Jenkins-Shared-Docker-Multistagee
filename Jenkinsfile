@@ -39,10 +39,11 @@ parameters{
             }
         }
     	stage('Static Code Analysis'){
-	when { expression {  params.action == 'create' } }
+	    when { expression {  params.action == 'create' } }
             steps{
                 script{
-                    staticCodeAnalysis()
+                    def sonarQubecredentialsId = 'sonarqube-api'
+                    staticCodeAnalysis(sonarQubecredentialsId)
                 }
             }
         }
