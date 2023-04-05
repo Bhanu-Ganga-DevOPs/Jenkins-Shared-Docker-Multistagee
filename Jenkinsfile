@@ -8,7 +8,7 @@ parameters{
         choice(name: 'action', choices: 'create\ndelete', description: 'Choose create/Destroy')
         string(name: 'Imagename', description: 'name of the docker build', defaultValue: 'javapp')
         string(name: 'ImageTag', description: 'tag of the docker build', defaultValue: 'javapp')
-        string(name: 'AppName', description: 'name of the Application', defaultValue: 'sprintboot')
+        string(name: 'DockerHubUser', description: 'name of the Application', defaultValue: 'bhanuayikam')
 }
 
     stages{
@@ -76,7 +76,7 @@ parameters{
             steps{
                 script{
                     
-                    mvnBuild("${params.Imagename}","${params.ImageTag}","${params.AppName}")
+                    mvnBuild("${params.Imagename}","${params.ImageTag}","${params.DockerHubUser}")
                 }
             }
         }
