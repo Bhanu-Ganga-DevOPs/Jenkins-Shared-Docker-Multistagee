@@ -6,15 +6,15 @@ pipeline {
 parameters{
 
         choice(name: 'action', choices: 'create\ndelete', description: 'Choose create/Destroy')
-        string(name: 'Imagename', description: 'name of the docker build', defaultValue: 'javapp')
-        string(name: 'ImageTag', description: 'tag of the docker build', defaultValue: 'v1')
-        string(name: 'DockerHubUser', description: 'name of the Application', defaultValue: 'bhanuayikam')
+        string(name: 'ImageName', description: "name of the docker build", defaultValue: 'javapp')
+        string(name: 'ImageTag', description: "tag of the docker build", defaultValue: 'v1')
+        string(name: 'DockerHubUser', description: "name of the Application", defaultValue: 'bhanuayikam')
 }
 
     stages{
 	
         stage('Code Checkout'){
-	when { expression {  params.action == 'create' } }
+	    when { expression {  params.action == 'create' } }
             steps{
             gitCheckout(
                 url: "https://github.com/Bhanu-Ganga-DevOPs/Jenkins-Shared-Docker-Multistagee.git"
@@ -23,7 +23,7 @@ parameters{
             }
         }
         stage('UNIT TEST'){
-	when { expression {  params.action == 'create' } }
+	    when { expression {  params.action == 'create' } }
 
             steps{
                 script{
@@ -32,10 +32,10 @@ parameters{
             }
         }
 
-	stage('Intergration Test'){
+	    stage('Intergration Test'){
         when { expression {  params.action == 'create' } }        
    
-	 steps{
+	         steps{
                 script{
                     mvnIntegrationTest()
                 }
@@ -70,16 +70,15 @@ parameters{
                 }
             }
         }
-
-        stage('Docker image Build'){
-	    when { expression {  params.action == 'create' } }
+        stage('Docker Image Push : DockerHub '){
+         when { expression {  params.action == 'create' } }
             steps{
-                script{
-                    
-                    mvnBuild("${params.Imagename}","${params.ImageTag}","${params.DockerHubUser}")
-                }
+               script{
+                   
+                   dockerImagePush("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
+               }
             }
-        }
+        } 
         
     }
 }
