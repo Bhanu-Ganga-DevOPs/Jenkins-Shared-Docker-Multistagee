@@ -71,7 +71,7 @@ parameters{
             }
         }
 
-        stage('Docker Image Build : ECR '){
+       stage('Docker Image Build : ECR'){
          when { expression {  params.action == 'create' } }
             steps{
                script{
@@ -79,9 +79,8 @@ parameters{
                    dockerBuild("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
                }
             }
-        } 
-
-        stage('Docker Image Scan : Trivy '){
+        }
+        stage('Docker Image Scan: trivy '){
          when { expression {  params.action == 'create' } }
             steps{
                script{
@@ -89,9 +88,8 @@ parameters{
                    dockerImageScan("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
                }
             }
-        } 
-
-        stage('Docker Image Push : DockerHub '){
+        }
+        stage('Docker Image Push : ECR '){
          when { expression {  params.action == 'create' } }
             steps{
                script{
@@ -99,8 +97,7 @@ parameters{
                    dockerImagePush("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
                }
             }
-        }
-
+        }   
         stage('Docker Image Cleanup : ECR '){
          when { expression {  params.action == 'create' } }
             steps{
@@ -109,7 +106,7 @@ parameters{
                    dockerImageCleanup("${params.aws_account_id}","${params.Region}","${params.ECR_REPO_NAME}")
                }
             }
-        }  
+        } 
         
     }
 }
