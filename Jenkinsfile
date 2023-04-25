@@ -44,15 +44,15 @@ parameters{
                 }
             }
         }
-//     	stage('Static Code Analysis'){
-// 	    when { expression {  params.action == 'create' } }
-//             steps{
-//                 script{
-//                     def sonarQubecredentialsId = 'sonarqube-api'
-//                     staticCodeAnalysis(sonarQubecredentialsId)
-//                 }
-//             }
-//         }
+    	stage('Static Code Analysis'){
+	    when { expression {  params.action == 'create' } }
+            steps{
+                script{
+                    def sonarQubecredentialsId = 'sonarqube-api'
+                    staticCodeAnalysis(sonarQubecredentialsId)
+                }
+            }
+        }
 
 //         stage('Quality gate status check : Sonarqube'){
 // 	    when { expression {  params.action == 'create' } }
