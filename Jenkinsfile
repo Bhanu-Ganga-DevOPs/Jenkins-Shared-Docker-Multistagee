@@ -63,25 +63,25 @@ parameters{
                 }
             }
         }
-//
-//         stage('Maven Build'){
-// 	    when { expression {  params.action == 'create' } }
-//             steps{
-//                 script{
-//
-//                     mvnBuild()
-//                 }
-//             }
-//         }
-//         stage('Docker Image Build : DockerHub '){
-//          when { expression {  params.action == 'create' } }
-//             steps{
-//                script{
-//
-//                    dockerBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
-//                }
-//             }
-//         }
+
+        stage('Maven Build'){
+	    when { expression {  params.action == 'create' } }
+            steps{
+                script{
+
+                    mvnBuild()
+                }
+            }
+        }
+        stage('Docker Image Build : DockerHub '){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
+
+                   dockerBuild("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
+               }
+            }
+        }
 
 //         stage('Docker Image Scan : Trivy '){
 //          when { expression {  params.action == 'create' } }
