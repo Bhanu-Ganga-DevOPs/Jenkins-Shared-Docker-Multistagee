@@ -8,7 +8,7 @@ parameters{
         choice(name: 'action', choices: 'create\ndelete', description: 'Choose create/Destroy')
         string(name: 'aws_account_id', description: "nAWS account id", defaultValue: '555138969324')
         string(name: 'Region', description: "Region of ECR", defaultValue: 'us-east-1')
-        string(name: 'ECR_REPO_NAME', description: "name of the ECR", defaultValue: 'bhanuayikam')
+        string(name: 'ECR_REPO_NAME', description: "name of the ECR", defaultValue: 'javarepo')
 }
 
     stages{
